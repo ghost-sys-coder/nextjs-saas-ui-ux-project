@@ -1,8 +1,12 @@
-import { integer, text, pgTable } from "drizzle-orm/pg-core";
+import { integer, text, pgTable, serial, timestamp } from "drizzle-orm/pg-core";
 
-export const todo = pgTable("users", {
-  id: integer("id").primaryKey(),
-  name: text("text").notNull(),
+
+export const usersTable = pgTable("users", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull().unique(),
+  name: text("name").notNull(),
   email: text("email").notNull().unique(),
-  credits: integer().default(5),
+  credits: integer("credits").default(5),
+  createdAt: timestamp("created_at").notNull().defaultNow()
 });
+
