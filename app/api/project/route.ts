@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { db } from "@/db/drizzle";
 import { projectsTable } from "@/db/schema";
 
+// create a project
 export async function POST(req: NextRequest) {
     const { input, device, projectId } = await req.json();
 

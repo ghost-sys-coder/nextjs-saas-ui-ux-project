@@ -119,6 +119,7 @@ const HomeHeroSection = () => {
                             <SelectContent>
                                 <SelectItem value="website">Website</SelectItem>
                                 <SelectItem value="mobile">Mobile App</SelectItem>
+                                <SelectItem value='tablet'>Tablet</SelectItem>
                                 <SelectItem value="desktop">Desktop App</SelectItem>
                             </SelectContent>
                         </Select>
