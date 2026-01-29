@@ -70,7 +70,7 @@ export default function Home() {
     <div className="min-h-screen bg-linear-to-b from-background to-muted/50">
       <HomeNavbar />
       <HomeHeroSection />
-      <section id="features" className="container py-14 md:py-20">
+      <section id="features" className="container py-8 md:py-10">
         <div className="mx-auto max-w-3xl text-center space-y-8 mb-12">
           <h2 className="text-3xl font-bold tracking-tight">Why Choose Mocklify?</h2>
           <p className="text-xl text-muted-foreground">Streamline your design workflow with powerful features.</p>
