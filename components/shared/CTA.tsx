@@ -15,8 +15,8 @@ const CTA = () => {
         <section className="bg-primary text-primary-foreground py-20 md:py-32 px-4">
             <div className="container text-center space-y-8">
                 <h2 className="text-3xl font-bold tracking-tight">Ready to Revolutionize Your Design Process?</h2>
-                <p className="text-xl">Sign up for early access and be the first to try MockupGen.</p>
-                <form onSubmit={handleSubmit} className="mx-auto max-w-md flex space-x-2">
+                <p className="text-xl">Sign up for early access and be the first to try Mocklify.</p>
+                <form onSubmit={handleSubmit} className="mx-auto max-w-md flex gap-2 flex-col sm:flex-row space-x-2">
                     <div className="flex-1">
                         <Label htmlFor="email" className="sr-only">Email</Label>
                         <Input
