@@ -4,15 +4,14 @@ import SettingsSection from '@/components/project/SettingsSection'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Sparkles } from 'lucide-react';
 
-const page = async ({ params }: { params: Promise<{ projectId: string }> }) => {
-  const { projectId } = await params;
+const page = async () => {
 
   return (
     <div className='min-h-screen bg-linear-to-b from-background to-muted/50'>
       <ProjectHeader />
 
       <div className="flex gap-4">
-        <SettingsSection projectId={projectId} />
+        <SettingsSection />
 
         <main className="flex-1 p-6 md:p-8 lg:p-10">
           <Alert className="max-w-2xl mx-auto">
