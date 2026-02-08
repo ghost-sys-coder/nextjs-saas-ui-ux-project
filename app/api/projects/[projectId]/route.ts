@@ -7,10 +7,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 // get the project
 export async function GET(
-    request: NextRequest, ctx: RouteContext<"/api/projects/[projectId]">
+    request: NextRequest,
+    {params}: {params: Promise<{projectId: string}>}
 ) {
-    const { projectId } = await ctx.params;
-    console.log({ projectId });
+    const { projectId } = await params;
+    console.log({ projectId, type:typeof(projectId) });
+
     const { isAuthenticated, userId } = await auth();
 
     if (!isAuthenticated || !userId) {
@@ -24,19 +26,27 @@ export async function GET(
     if (!projectId) {
         return NextResponse.json({
             success: false,
-            message: "Project not found!"
+            message: "Project ID not found!",
+            projectId
         }, { status: 404 });
     }
     
-    const projectNum = Number(projectId);
+    // const projectNum = Number(projectId);
 
     try {
         const [project] = await db.select().from(projectsTable).where(
             and(
-                eq(projectsTable.id, projectNum),
-                eq(projectsTable.userId, userId)
+                eq(projectsTable.id, parseFloat(projectId)),
+                eq(projectsTable.userId, "user_39P7nnLPIjgPyMAVO256qAAglWD")
             )
         ).limit(1);
+
+        if (!project) {
+            return NextResponse.json({
+                success: false,
+                message: "No project found!"
+            }, { status: 404 });
+        }
         
         return NextResponse.json({
             success: true,

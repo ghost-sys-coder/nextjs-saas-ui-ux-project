@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -33,7 +34,8 @@ import ProjectThemes from "./ProjectThemes";
 import axios from "axios";
 
 
-export default function SettingsSection({ projectId }: { projectId: string }) {
+export default function SettingsSection() {
+    const params = useParams<{projectId: string}>();
     const [prompt, setPrompt] = useState("");
     const [device, setDevice] = useState("desktop");
     const [stylePreset, setStylePreset] = useState("modern");
@@ -42,23 +44,29 @@ export default function SettingsSection({ projectId }: { projectId: string }) {
     const [autoGenerate, setAutoGenerate] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    console.log(params);
+
     // get project information
     useEffect(() => { 
         async function fetchProject() {
+            if (!params.projectId) {
+                console.error("No project Id");
+                setIsLoading(false);
+                return;
+            }
             setIsLoading(true);
             try {
-                const { data } = await axios.get(`/api/projects/${projectId}`); 
+                const { data } = await axios.get(`/api/projects/${params.projectId}`); 
                 console.log(data?.project);
-                setPrompt(data?.project?.userInput ?? "");
+                // setPrompt(data?.project?.userInput ?? "");
             } catch (error) {
                 console.error("Failed to retrieve project", error);
             } finally {
                 setIsLoading(false);
             }
         };
-
         fetchProject();
-    }, [projectId]);
+    }, [params.projectId]);
 
     const handleGenerate = () => {
         if (!prompt.trim()) {
@@ -80,7 +88,6 @@ export default function SettingsSection({ projectId }: { projectId: string }) {
         toast.info("Settings reset to defaults");
     };
 
-    if (!projectId) return;
 
     if (isLoading) return;
 
