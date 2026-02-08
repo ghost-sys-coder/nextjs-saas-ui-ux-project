@@ -122,3 +122,14 @@ export const themeOptions = [
     previewBg: "bg-gradient-to-br from-orange-400/30 via-rose-400/30 to-purple-400/30",
   },
 ];
+
+export const themeNames = [
+  { value: "modern", title: "Modern / Clean" },
+  { value: "minimal", title: "Minimal" },
+  { value: "neumorphic", title: "Neumorphic" },
+  { value: "glassmorphism", title: "Glassmorphism" },
+  { value: "brutalist", title: "Brutalist" },
+  { value: "material", title: "Material" },
+  { value: "cyberpunk", title: "Cyberpunk" },
+  { value: "bento", title: "Bento" },
+]

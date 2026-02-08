@@ -11,7 +11,6 @@ export async function GET(
     {params}: {params: Promise<{projectId: string}>}
 ) {
     const { projectId } = await params;
-    console.log({ projectId, type:typeof(projectId) });
 
     const { isAuthenticated, userId } = await auth();
 

@@ -27,15 +27,20 @@ import {
     Sparkles,
     RotateCcw,
     Info,
+    Share,
+    Save,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import ProjectThemes from "./ProjectThemes";
 import axios from "axios";
+import { themeNames } from "@/constants";
+import { Input } from "../ui/input";
 
 
 export default function SettingsSection() {
-    const params = useParams<{projectId: string}>();
+    const params = useParams<{ projectId: string }>();
+    const [projectName, setProjectName] = useState("");
     const [prompt, setPrompt] = useState("");
     const [device, setDevice] = useState("desktop");
     const [stylePreset, setStylePreset] = useState("modern");
@@ -47,7 +52,7 @@ export default function SettingsSection() {
     console.log(params);
 
     // get project information
-    useEffect(() => { 
+    useEffect(() => {
         async function fetchProject() {
             if (!params.projectId) {
                 console.error("No project Id");
@@ -56,9 +61,9 @@ export default function SettingsSection() {
             }
             setIsLoading(true);
             try {
-                const { data } = await axios.get(`/api/projects/${params.projectId}`); 
-                console.log(data?.project);
-                // setPrompt(data?.project?.userInput ?? "");
+                const { data } = await axios.get(`/api/projects/${params.projectId}`);
+                // console.log(data?.project);
+                setPrompt(data?.project?.userInput ?? "");
             } catch (error) {
                 console.error("Failed to retrieve project", error);
             } finally {
@@ -74,11 +79,12 @@ export default function SettingsSection() {
             return;
         }
         console.log({
-            prompt, device, stylePreset, quality, darkMode, autoGenerate
+            projectName ,prompt, device, stylePreset, quality, darkMode, autoGenerate
         });
     };
 
     const handleReset = () => {
+        setProjectName("");
         setPrompt("");
         setDevice("desktop");
         setStylePreset("modern");
@@ -130,6 +136,12 @@ export default function SettingsSection() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
+                                <Input
+                                    placeholder="Project title..."
+                                    className="w-full"
+                                    value={projectName}
+                                    onChange={e => setProjectName(e.target.value)}
+                                />
                                 <Textarea
                                     placeholder="A modern SaaS dashboard with dark mode, neumorphic cards, sidebar navigation, analytics widgets, user profile dropdown..."
                                     className="min-h-45 resize-none"
@@ -189,14 +201,9 @@ export default function SettingsSection() {
                                         <SelectValue placeholder="Select style preset" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="modern">Modern / Clean</SelectItem>
-                                        <SelectItem value="minimal">Minimal</SelectItem>
-                                        <SelectItem value="neumorphic">Neumorphic</SelectItem>
-                                        <SelectItem value="glassmorphism">Glassmorphism</SelectItem>
-                                        <SelectItem value="brutalist">Brutalist</SelectItem>
-                                        <SelectItem value="material">Material Design</SelectItem>
-                                        <SelectItem value="cyberpunk">Cyberpunk</SelectItem>
-                                        <SelectItem value="bento">Bento</SelectItem>
+                                        {themeNames.map((themeName, index) => (
+                                            <SelectItem key={index} value={themeName.value}>{themeName.title}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </CardContent>
@@ -258,6 +265,17 @@ export default function SettingsSection() {
                 </Tabs>
 
                 <div className="pt-6 mt-auto border-t space-y-3">
+                    {/* add share and screenshot */}
+                    <div className="grid grid-cols-2 gap-3 mb-5">
+                        <Button variant={"outline"}>
+                            <Share className="mr-2 w-4 h-4" />
+                            Share
+                        </Button>
+                        <Button variant={"secondary"}>
+                            <Save className="mr-2 w-4 h-4" />
+                            Save
+                        </Button>
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
                         <Button variant="outline" onClick={handleReset}>
                             <RotateCcw className="mr-2 h-4 w-4" />
