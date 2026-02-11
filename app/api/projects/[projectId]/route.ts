@@ -36,7 +36,7 @@ export async function GET(
         const [project] = await db.select().from(projectsTable).where(
             and(
                 eq(projectsTable.id, parseFloat(projectId)),
-                eq(projectsTable.userId, "user_39P7nnLPIjgPyMAVO256qAAglWD")
+                eq(projectsTable.userId, userId)
             )
         ).limit(1);
 

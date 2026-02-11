@@ -106,7 +106,7 @@ const HomeHeroSection = () => {
                 <InputGroup>
                     <Textarea
                         className="flex field-sizing-content min-h-40 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base transition-[color,box-shadow] outline-none md:text-sm"
-                        placeholder="Prompt the Mocklify AI for your design..."
+                        placeholder="Prompt the FrameFlow AI for your design..."
                         ref={textareaRef}
                         value={input}
                         onChange={e => setInput(e.target.value)}

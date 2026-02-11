@@ -49,7 +49,7 @@ export const features = [
 
 export const testimonials = [
   {
-    quote: "Mocklify saved me hours on every project!",
+    quote: "FrameFlow saved me hours on every project!",
     author: "Jane Doe, UI Designer",
   },
   {
@@ -72,7 +72,7 @@ export default function Home() {
       <HomeHeroSection />
       <section id="features" className="container py-8 md:py-10">
         <div className="mx-auto max-w-3xl text-center space-y-8 mb-12">
-          <h2 className="text-3xl font-bold tracking-tight">Why Choose Mocklify?</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Why Choose FrameFlow?</h2>
           <p className="text-xl text-muted-foreground">Streamline your design workflow with powerful features.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-3 p-4">

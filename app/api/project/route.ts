@@ -39,3 +39,9 @@ export async function POST(req: NextRequest) {
     }
 
 }
+
+
+// get project 
+// export async function GET(request: RouteContext<"/api/projects/[projectId]">) {
+    
+// }
