@@ -21,7 +21,7 @@ export function AnimatedText() {
             />
             🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
             <AnimatedGradientText className="text-sm font-medium">
-                Generate your UI with Mocklify
+                Generate your UI with FrameFlow
             </AnimatedGradientText>
             <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
         </div>

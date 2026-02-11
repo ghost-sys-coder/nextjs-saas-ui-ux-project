@@ -19,7 +19,7 @@ const HomepageMobileNavbar = () => {
                 <SheetHeader className="mb-6">
                     <SheetTitle className="flex items-center gap-2 text-xl">
                         <Sparkles className="h-5 w-5 text-primary" />
-                        Mocklify
+                        FrameFlow
                     </SheetTitle>
                 </SheetHeader>
 

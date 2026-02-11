@@ -18,7 +18,7 @@ const HomeNavbar = () => {
             <div className="flex gap-4 justify-between items-center h-16 container">
                 <Link href="/" className='flex items-center space-x-2'>
                     <Sparkles className='h-16 w-16 text-primary' />
-                    <span className='font-bold text-xl'>Mocklify</span>
+                    <span className='font-bold text-xl'>FrameFlow</span>
                 </Link>
                 <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
                     {links.map((link) => (
